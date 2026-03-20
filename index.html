@@ -363,11 +363,146 @@
 })();
 </script>
 </div>
-<div class="block-card" id="blk-center-1">
+<div class="block-card carousel-container" id="blk-center-1">
+
+<div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="三多願景" style="position: relative; background: transparent; margin-top: 10px; display: grid; grid-template-columns: 1fr; grid-template-rows: auto auto; grid-row-gap: 5px;">
+
+    <!-- TAB 1: Pause -->
+    <button id="cr-play-center-1" aria-label="暫停輪播" style="grid-row: 2; grid-column: 1; justify-self: end; align-self: center; margin-right: 15px; z-index: 30; background: #888; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-weight: bold; letter-spacing: 1px;">|| 暫停</button>
+
+    <!-- TAB 2: Prev Arrow -->
+    <button id="cr-prev-center-1" aria-label="上一張圖片" style="grid-row: 1; grid-column: 1; justify-self: start; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 18px; border-radius: 0 4px 4px 0;">&#10094;</button>
+
+    <!-- TAB 3: Next Arrow -->
+    <button id="cr-next-center-1" aria-label="下一張圖片" style="grid-row: 1; grid-column: 1; justify-self: end; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 18px; border-radius: 4px 0 0 4px;">&#10095;</button>
+
+    <!-- TAB 4: Dots -->
+    <div id="cr-dots-center-1" style="grid-row: 2; grid-column: 1; justify-self: center; align-self: center; z-index: 30; display: flex; gap: 8px; padding: 10px 0;">
+        <button class="cr-dot" data-idx="0" aria-label="跳至第 1 張" style="width: 12px; height: 12px; border-radius: 50%; background: #397DB3; border: 2px solid #397DB3; cursor: pointer; padding: 0;"></button>
+        <button class="cr-dot" data-idx="1" aria-label="跳至第 2 張" style="width: 12px; height: 12px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; padding: 0;"></button>
+        <button class="cr-dot" data-idx="2" aria-label="跳至第 3 張" style="width: 12px; height: 12px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; padding: 0;"></button>
+        <button class="cr-dot" data-idx="3" aria-label="跳至第 4 張" style="width: 12px; height: 12px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; padding: 0;"></button>
+    </div>
+
+    <!-- Row 2 Background (Visual layer, not focusable) -->
+    <div style="grid-row: 2; grid-column: 1; z-index: 10; background: #e9e9e9; border-top: 1px solid #ccc; width: 100%; height: 100%; pointer-events: none;"></div>
+    
+    <!-- TAB 5+: Images (Rendered in top row) -->
+    <div id="cr-inner-center-1" style="grid-row: 1; grid-column: 1; display: grid; width: 100%; overflow: hidden; background: transparent; border-radius: 8px; z-index: 15;">
+
+        <div class="cr-slide" id="cr-slide-center-1-0" role="group" aria-roledescription="slide" aria-label="第 1 張，共 4 張" aria-hidden="false" style="grid-area: 1 / 1; align-self: center; opacity: 1; z-index: 10; transition: opacity 0.6s ease-in-out;">
+            <a href="#" target="_self" tabindex="0" aria-label="有人文的校風" style="display: block; width: 100%;">
+                <img src="./images/01.有人文的校風.png" alt="" style="width: 100%; height: auto; display: block;">
+            </a>
+        </div>
+        <div class="cr-slide" id="cr-slide-center-1-1" role="group" aria-roledescription="slide" aria-label="第 2 張，共 4 張" aria-hidden="true" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out;">
+            <a href="#" target="_blank" tabindex="-1" aria-label="有優質的教育" style="display: block; width: 100%;">
+                <img src="./images/02.有優質的教育.png" alt="" style="width: 100%; height: auto; display: block;">
+            </a>
+        </div>
+        <div class="cr-slide" id="cr-slide-center-1-2" role="group" aria-roledescription="slide" aria-label="第 3 張，共 4 張" aria-hidden="true" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out;">
+            <a href="#" target="_blank" tabindex="-1" aria-label="有活力的校園" style="display: block; width: 100%;">
+                <img src="./images/03.有活力的校園.png" alt="" style="width: 100%; height: auto; display: block;">
+            </a>
+        </div>
+        <div class="cr-slide" id="cr-slide-center-1-3" role="group" aria-roledescription="slide" aria-label="第 4 張，共 4 張" aria-hidden="true" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out;">
+            <a href="#" target="_blank" tabindex="-1" aria-label="有健康的學生" style="display: block; width: 100%;">
+                <img src="./images/04.有健康的學生.png" alt="" style="width: 100%; height: auto; display: block;">
+            </a>
+        </div>
+    </div>
+    
+    <div aria-live="polite" aria-atomic="true" class="sr-only" id="cr-liveregion-center-1" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">顯示第 1 張</div>
+
+<script>
+(function(){
+    var wrapper = document.getElementById("blk-center-1");
+    if(!wrapper) return;
+    
+    var slides = wrapper.querySelectorAll('.cr-slide');
+    var dots = wrapper.querySelectorAll('.cr-dot');
+    var maxIdx = slides.length - 1;
+    if(maxIdx < 0) return;
+    
+    var currentIdx = 0;
+    var timer = null;
+    var isPlaying = true;
+    
+    var btnPrev = document.getElementById("cr-prev-center-1");
+    var btnNext = document.getElementById("cr-next-center-1");
+    var btnPlay = document.getElementById("cr-play-center-1");
+    var liveRegion = document.getElementById("cr-liveregion-center-1");
+    
+    function showSlide(index) {
+        slides[currentIdx].style.opacity = 0;
+        slides[currentIdx].style.zIndex = 1;
+        slides[currentIdx].setAttribute('aria-hidden', 'true');
+        dots[currentIdx].style.background = "#ccc";
+        dots[currentIdx].style.border = "none";
+        var oldAnchor = slides[currentIdx].querySelector('a');
+        if(oldAnchor) oldAnchor.setAttribute('tabindex', '-1');
+        
+        currentIdx = index;
+        if(currentIdx > maxIdx) currentIdx = 0;
+        if(currentIdx < 0) currentIdx = maxIdx;
+        
+        slides[currentIdx].style.opacity = 1;
+        slides[currentIdx].style.zIndex = 10;
+        slides[currentIdx].setAttribute('aria-hidden', 'false');
+        dots[currentIdx].style.background = "#397DB3";
+        dots[currentIdx].style.border = "2px solid #397DB3";
+        var newAnchor = slides[currentIdx].querySelector('a');
+        if(newAnchor) newAnchor.setAttribute('tabindex', '0');
+        
+        liveRegion.textContent = "目前顯示第 " + (currentIdx + 1) + " 張，共 " + (maxIdx + 1) + " 張：" + (newAnchor ? newAnchor.getAttribute("aria-label") : "");
+    }
+    
+    function nextSlide() { showSlide(currentIdx + 1); }
+    function prevSlide() { showSlide(currentIdx - 1); }
+    
+    function startPlay() {
+        if(timer) clearInterval(timer);
+        timer = setInterval(nextSlide, 4000);
+        isPlaying = true;
+        btnPlay.innerHTML = "|| 暫停";
+        btnPlay.setAttribute("aria-label", "暫停輪播");
+    }
+    function stopPlay() {
+        if(timer) clearInterval(timer);
+        timer = null;
+        isPlaying = false;
+        btnPlay.innerHTML = "&#9654; 播放";
+        btnPlay.setAttribute("aria-label", "播放輪播");
+    }
+    
+    btnNext.addEventListener('click', function() { stopPlay(); nextSlide(); });
+    btnPrev.addEventListener('click', function() { stopPlay(); prevSlide(); });
+    btnPlay.addEventListener('click', function() { isPlaying ? stopPlay() : startPlay(); });
+    
+    dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+            stopPlay();
+            var targetIdx = parseInt(dot.getAttribute('data-idx'));
+            showSlide(targetIdx);
+        });
+    });
+    
+    var inner = document.getElementById("cr-inner-center-1");
+    wrapper.addEventListener('mouseover', function() { if(isPlaying) { clearInterval(timer); timer=null; } });
+    wrapper.addEventListener('mouseout', function() { if(isPlaying) { startPlay(); } });
+    wrapper.addEventListener('focusin', function() { if(isPlaying) { clearInterval(timer); timer=null; } });
+    wrapper.addEventListener('focusout', function() { if(isPlaying) { startPlay(); } });
+    
+    startPlay();
+})();
+</script>
+</div>
+</div>
+<div class="block-card" id="blk-center-2">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #397DB3; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">公告</h2>
 <iframe src="https://esa.ntpc.edu.tw/web-announce/rest/service/view/public/ZmZrdi9CZkpGTkZMZ25VRFhIaVozUGZVMkhmempGRDRjR01hZ3dBRk5nST0" title="公告" width="100%" height="1200" style="border:none;" loading="lazy"></iframe>
 </div>
-<div class="block-card" id="blk-center-2">
+<div class="block-card" id="blk-center-3">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #397DB3; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">榮譽榜</h2>
 <iframe src="https://esa.ntpc.edu.tw/web-heromgt/rest/service/view/public/bE5CSC9OdmxtT3lRL2FrYSszdkwzbTBBVUozV2xiTEVFeGRwL3kzRS9Dcz0" title="榮譽榜" width="100%" height="700" style="border:none;" loading="lazy"></iframe>
 </div>
