@@ -95,7 +95,6 @@
     /* 內容區塊 */
     .container { display: flex; padding: 1.25em; gap: 1.5em; max-width: 100%; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1; justify-content: center; }
     .container-top, .container-bottom { display: flex; flex-wrap: wrap; gap: 15px; padding: 1.25em; max-width: 100%; margin: 0 auto; width: 100%; box-sizing: border-box; align-items: flex-start; justify-content: center; }
-    .container-top > .access-key, .container-bottom > .access-key { width: 100%; flex: 0 0 100%; margin-bottom: -5px; }
     .container-top > .block-card, .container-bottom > .block-card { width: calc(25% - 12px); box-sizing: border-box; margin-bottom: 0; min-width: 200px; }
     .container-top > .block-full-width, .container-bottom > .block-full-width { width: 100%; flex: 0 0 100%; }
     .col-left, .col-right { width: 20%; flex: 0 1 20%; } 
@@ -218,7 +217,7 @@
 </ul></div></nav>
 
 <div class="banner-container"><img src="images/banner.png" alt="學校橫幅" class="banner-img" /></div>
-<div class="container-top"><a href="#at" id="at" accesskey="T" title="上方連結區" class="access-key">:::</a>
+<div class="container-top"><div style="width: 100%; margin-bottom: -5px;"><a href="#at" id="at" accesskey="T" title="上方連結區" class="access-key">:::</a></div>
 <div class="block-card block-full-width" id="blk-top-0">
 <h2 class="block-title sr-only" tabindex="-1">跑馬燈</h2>
 <style>
@@ -288,7 +287,7 @@
 </ul>
 </div>
 <div class="block-card" id="blk-left-1">
-<h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">語文競賽</h2>
+<h2 class="block-title" style="text-align: center; margin-bottom: 5px;" tabindex="-1"><img src="images/lc.png" alt="語文競賽" style="max-width: 100%; height: auto; border-radius: 5px;"></h2>
 <ul class="link-list-container">
 <li class="link-list-entry">
 <a href="https://drive.google.com/drive/folders/1nhMyDMK2eSlGRVzXMCv38cKuIGLJujET?usp=sharing" target="_blank" data-title="校內語文競賽" aria-label="校內語文競賽" class="link-list-item single-link">校內語文競賽</a>
@@ -739,9 +738,7 @@ function showDept(id, btn) {
 
 </aside>
 </div>
-<div class="container-bottom"><a href="#ab" id="ab" accesskey="B" title="下方連結區" class="access-key">:::</a>
 
-</div>
 <footer class="footer">
     <div class="footer-container">
         <div style="margin-bottom: 5px;">
