@@ -94,6 +94,10 @@
 
     /* 內容區塊 */
     .container { display: flex; padding: 1.25em; gap: 1.5em; max-width: 100%; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1; justify-content: center; }
+    .container-top, .container-bottom { display: flex; flex-wrap: wrap; gap: 15px; padding: 1.25em; max-width: 100%; margin: 0 auto; width: 100%; box-sizing: border-box; align-items: flex-start; justify-content: center; }
+    .container-top > .access-key, .container-bottom > .access-key { width: 100%; flex: 0 0 100%; margin-bottom: -5px; }
+    .container-top > .block-card, .container-bottom > .block-card { width: calc(25% - 12px); box-sizing: border-box; margin-bottom: 0; min-width: 200px; }
+    .container-top > .block-full-width, .container-bottom > .block-full-width { width: 100%; flex: 0 0 100%; }
     .col-left, .col-right { width: 20%; flex: 0 1 20%; } 
     .col-center { width: 60%; flex: 0 1 60%; }
     .center-content-wrapper { display: flex; flex-wrap: wrap; column-gap: 1.5em; row-gap: 10px; align-content: flex-start; width: 100%; }
@@ -110,7 +114,9 @@
 
     /* 其他通用樣式 */
     .link-list-container { list-style: none; padding: 0; margin: 0; }
+    .link-list-horizontal { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
     .link-list-entry { list-style: none; margin-bottom: 5px; }
+    .link-list-horizontal .link-list-entry { margin-bottom: 0; }
     .single-link { display: block; text-decoration: none; color: #333; background-color: #fff; border: 1px solid #ddd; padding: 12px 15px; border-radius: 5px; transition: all 0.2s; }
     .single-link:hover { background-color: #f9f9f9; color: #408080; border-color: #408080; }
     
@@ -161,6 +167,7 @@
         .container { flex-direction: column; }
         .col-left, .col-center, .col-right { width: 100%; order: 0; flex: 1 1 100%; }
         .col-center { order: 1; } .col-left { order: 2; } .col-right { order: 3; }
+        .container-top > .block-card, .container-bottom > .block-card { width: 100%; }
         .sitemap-list { flex-direction: column; }
         .top-nav { display: none; } 
     }
@@ -211,6 +218,128 @@
 </ul></div></nav>
 
 <div class="banner-container"><img src="images/banner.png" alt="學校橫幅" class="banner-img" /></div>
+<div class="container-top"><a href="#at" id="at" accesskey="T" title="上方連結區" class="access-key">:::</a>
+<div class="block-card block-full-width" id="blk-top-0">
+<h2 class="block-title sr-only" tabindex="-1">上方連結區</h2>
+<ul class="link-list-container link-list-horizontal">
+<li class="link-list-entry">
+<a href="https://sites.google.com/member.sdes.ntpc.edu.tw/myschool" target="_blank" data-title="校務問卷" aria-label="校務問卷" class="img-link">
+<img src="images/9.png" alt="">
+<div class="img-caption">校務問卷</div>
+</a>
+</li>
+</ul>
+</div>
+<div class="block-card block-full-width" id="blk-top-1">
+<h2 class="block-title sr-only" tabindex="-1">跑馬燈</h2>
+<style>
+@keyframes marquee-scroll-top-1 {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+.mq-anim-top-1 {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: marquee-scroll-top-1 18s linear infinite;
+}
+.mq-anim-top-1.paused {
+    animation-play-state: paused !important;
+}
+</style>
+<div style="display: flex; align-items: center; background: #fff; padding: 8px 10px; border: 1px solid #eee; border-radius: 5px; gap: 10px;">
+    <button id="mq-btn-top-1" aria-label="暫停跑馬燈" style="white-space: nowrap; background: #408080; color: #fff; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.95em;">暫停</button>
+    <div style="flex: 1; overflow: hidden;" role="marquee" aria-live="off">
+        <div id="mq-content-top-1" class="mq-anim-top-1">
+<span style="margin-right: 40px; color: #333;">Antigravity 真好用</span>
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    var content = document.getElementById("mq-content-top-1");
+    var btn = document.getElementById("mq-btn-top-1");
+    
+    btn.addEventListener("click", function() {
+        if(content.classList.contains("paused")) {
+            content.classList.remove("paused");
+            btn.textContent = "暫停";
+            btn.setAttribute("aria-label", "暫停跑馬燈");
+            content.setAttribute("aria-live", "off");
+        } else {
+            content.classList.add("paused");
+            btn.textContent = "播放";
+            btn.setAttribute("aria-label", "播放跑馬燈");
+            content.setAttribute("aria-live", "polite");
+        }
+    });
+    
+    content.addEventListener("focusin", function() { content.classList.add("paused"); });
+    content.addEventListener("focusout", function() { 
+        if(btn.textContent === "暫停") content.classList.remove("paused"); 
+    });
+    
+    content.addEventListener("mouseover", function() { content.classList.add("paused"); });
+    content.addEventListener("mouseout", function() { 
+        if(btn.textContent === "暫停") content.classList.remove("paused"); 
+    });
+})();
+</script>
+</div>
+<div class="block-card" id="blk-top-2">
+<h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">宣導網站</h2>
+<ul class="link-list-container">
+<li class="link-list-entry">
+<a href="https://eliteracy.edu.tw/" target="_blank" data-title="中小學數位素養教育資源網" aria-label="中小學數位素養教育資源網" class="link-list-item single-link">中小學數位素養教育資源網</a>
+</li>
+<li class="link-list-entry">
+<a href="https://antidrug.moj.gov.tw/" target="_blank" data-title="反毒大本營" aria-label="反毒大本營" class="link-list-item single-link">反毒大本營</a>
+</li>
+<li class="link-list-entry">
+<a href="https://165.npa.gov.tw/" target="_blank" data-title="165全民防騙網" aria-label="165全民防騙網" class="link-list-item single-link">165全民防騙網</a>
+</li>
+<li class="link-list-entry">
+<a href="https://f4a.tw/" target="_blank" data-title="新北動健康" aria-label="新北動健康" class="link-list-item single-link">新北動健康</a>
+</li>
+<li class="link-list-entry">
+<a href="https://ntpc.familyedu.moe.gov.tw/" target="_blank" data-title="新北市政府家庭教育中心" aria-label="新北市政府家庭教育中心" class="link-list-item single-link">新北市政府家庭教育中心</a>
+</li>
+<li class="link-list-entry">
+<a href="https://www.greenschool.moe.edu.tw/" target="_blank" data-title="教育部綠色學校" aria-label="教育部綠色學校" class="link-list-item single-link">教育部綠色學校</a>
+</li>
+<li class="link-list-entry">
+<a href="https://tagv.mohw.gov.tw/" target="_blank" data-title="TAGV 反性別暴力電子報" aria-label="TAGV 反性別暴力電子報" class="link-list-item single-link">TAGV 反性別暴力電子報</a>
+</li>
+<li class="link-list-entry">
+<a href="https://246.ardswc.gov.tw/" target="_blank" data-title="土石流防災資訊網" aria-label="土石流防災資訊網" class="link-list-item single-link">土石流防災資訊網</a>
+</li>
+<li class="link-list-entry">
+<a href="https://ai.gov.tw/" target="_blank" data-title="禽流感資訊專區" aria-label="禽流感資訊專區" class="link-list-item single-link">禽流感資訊專區</a>
+</li>
+</ul>
+</div>
+<div class="block-card" id="blk-top-3">
+<h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">新北校園通</h2>
+<ul class="link-list-container">
+<li class="link-list-entry">
+<a href="https://play.google.com/store/apps/details?id=tw.com.ischool.ntpc&hl=zh_TW&gl=US&pli=1" target="_blank" data-title="新北校園通 Google Play 下載" aria-label="新北校園通 Google Play 下載" class="img-link">
+<img src="./images/Google_Play_Store.png" alt="">
+<div class="img-caption">新北校園通 Google Play 下載</div>
+</a>
+</li>
+<li class="link-list-entry">
+<a href="https://www.google.com/url?q=https%3A%2F%2Fapps.apple.com%2Ftw%2Fapp%2F%25E6%2596%25B0%25E5%258C%2597%25E6%25A0%25A1%25E5%259C%2592%25E9%2580%259A%2Fid1065747651&sa=D&sntz=1&usg=AOvVaw0dVGOxHRU9dR62Fi_GJG87" target="_blank" data-title="新北校園通 App Store 下載" aria-label="新北校園通 App Store 下載" class="img-link">
+<img src="./images/appstore.png" alt="">
+<div class="img-caption">新北校園通 App Store 下載</div>
+</a>
+</li>
+<li class="link-list-entry">
+<a href="https://mis.ntpc.edu.tw/p/406-1001-5733,r2.php?Lang=zh-tw" target="_blank" data-title="APP操作說明與影片" aria-label="APP操作說明與影片" class="link-list-item single-link">APP操作說明與影片</a>
+</li>
+</ul>
+</div>
+
+</div>
 <div class="container">
 <aside class="col-left"><a href="#al" id="al" accesskey="L" title="左側區塊" class="access-key">:::</a>
 <div class="block-card" id="blk-left-0">
@@ -268,38 +397,6 @@
 </div>
 </div>
 <div class="block-card" id="blk-left-4">
-<h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">宣導網站</h2>
-<ul class="link-list-container">
-<li class="link-list-entry">
-<a href="https://eliteracy.edu.tw/" target="_blank" data-title="中小學數位素養教育資源網" aria-label="中小學數位素養教育資源網" class="link-list-item single-link">中小學數位素養教育資源網</a>
-</li>
-<li class="link-list-entry">
-<a href="https://antidrug.moj.gov.tw/" target="_blank" data-title="反毒大本營" aria-label="反毒大本營" class="link-list-item single-link">反毒大本營</a>
-</li>
-<li class="link-list-entry">
-<a href="https://165.npa.gov.tw/" target="_blank" data-title="165全民防騙網" aria-label="165全民防騙網" class="link-list-item single-link">165全民防騙網</a>
-</li>
-<li class="link-list-entry">
-<a href="https://f4a.tw/" target="_blank" data-title="新北動健康" aria-label="新北動健康" class="link-list-item single-link">新北動健康</a>
-</li>
-<li class="link-list-entry">
-<a href="https://ntpc.familyedu.moe.gov.tw/" target="_blank" data-title="新北市政府家庭教育中心" aria-label="新北市政府家庭教育中心" class="link-list-item single-link">新北市政府家庭教育中心</a>
-</li>
-<li class="link-list-entry">
-<a href="https://www.greenschool.moe.edu.tw/" target="_blank" data-title="教育部綠色學校" aria-label="教育部綠色學校" class="link-list-item single-link">教育部綠色學校</a>
-</li>
-<li class="link-list-entry">
-<a href="https://tagv.mohw.gov.tw/" target="_blank" data-title="TAGV 反性別暴力電子報" aria-label="TAGV 反性別暴力電子報" class="link-list-item single-link">TAGV 反性別暴力電子報</a>
-</li>
-<li class="link-list-entry">
-<a href="https://246.ardswc.gov.tw/" target="_blank" data-title="土石流防災資訊網" aria-label="土石流防災資訊網" class="link-list-item single-link">土石流防災資訊網</a>
-</li>
-<li class="link-list-entry">
-<a href="https://ai.gov.tw/" target="_blank" data-title="禽流感資訊專區" aria-label="禽流感資訊專區" class="link-list-item single-link">禽流感資訊專區</a>
-</li>
-</ul>
-</div>
-<div class="block-card" id="blk-left-5">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">常用連結</h2>
 <ul class="link-list-container">
 <li class="link-list-entry">
@@ -328,7 +425,7 @@
 </li>
 </ul>
 </div>
-<div class="block-card" id="blk-left-6">
+<div class="block-card" id="blk-left-5">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">空氣品質資訊</h2>
 <iframe src="https://airtw.moenv.gov.tw/AirQuality_APIs/WebWidget.aspx?site=91" title="空氣品質資訊" width="100%" height="400" style="border:none;" loading="lazy"></iframe>
 </div>
@@ -336,78 +433,22 @@
 </aside>
 <main class="col-center" id="main_content" tabindex="-1" style="outline: none;"><a href="#ac" id="ac" accesskey="C" title="主要內容區" class="access-key">:::</a>
 <div class="center-content-wrapper">
-<div class="block-card" id="blk-center-0">
-<h2 class="block-title sr-only" tabindex="-1">跑馬燈</h2>
-<style>
-@keyframes marquee-scroll-center-0 {
-    0%   { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
-}
-.mq-anim-center-0 {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    animation: marquee-scroll-center-0 18s linear infinite;
-}
-.mq-anim-center-0.paused {
-    animation-play-state: paused !important;
-}
-</style>
-<div style="display: flex; align-items: center; background: #fff; padding: 8px 10px; border: 1px solid #eee; border-radius: 5px; gap: 10px;">
-    <button id="mq-btn-center-0" aria-label="暫停跑馬燈" style="white-space: nowrap; background: #408080; color: #fff; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.95em;">暫停</button>
-    <div style="flex: 1; overflow: hidden;" role="marquee" aria-live="off">
-        <div id="mq-content-center-0" class="mq-anim-center-0">
-<span style="margin-right: 40px; color: #333;">Antigravity 真好用</span>
-        </div>
-    </div>
-</div>
-<script>
-(function(){
-    var content = document.getElementById("mq-content-center-0");
-    var btn = document.getElementById("mq-btn-center-0");
-    
-    btn.addEventListener("click", function() {
-        if(content.classList.contains("paused")) {
-            content.classList.remove("paused");
-            btn.textContent = "暫停";
-            btn.setAttribute("aria-label", "暫停跑馬燈");
-            content.setAttribute("aria-live", "off");
-        } else {
-            content.classList.add("paused");
-            btn.textContent = "播放";
-            btn.setAttribute("aria-label", "播放跑馬燈");
-            content.setAttribute("aria-live", "polite");
-        }
-    });
-    
-    content.addEventListener("focusin", function() { content.classList.add("paused"); });
-    content.addEventListener("focusout", function() { 
-        if(btn.textContent === "暫停") content.classList.remove("paused"); 
-    });
-    
-    content.addEventListener("mouseover", function() { content.classList.add("paused"); });
-    content.addEventListener("mouseout", function() { 
-        if(btn.textContent === "暫停") content.classList.remove("paused"); 
-    });
-})();
-</script>
-</div>
-<div class="block-card carousel-container" id="blk-center-1">
+<div class="block-card carousel-container" id="blk-center-0">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">三多願景</h2>
 
 <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="三多願景" style="position: relative; background: transparent; margin-top: 10px; display: grid; grid-template-columns: 1fr; grid-template-rows: auto auto; grid-row-gap: 5px;">
 
     <!-- TAB 1: Pause -->
-    <button id="cr-play-center-1" aria-label="暫停輪播" style="grid-row: 2; grid-column: 1; justify-self: end; align-self: center; margin-right: 15px; z-index: 30; background: #888; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-weight: bold; letter-spacing: 1px;">|| 暫停</button>
+    <button id="cr-play-center-0" aria-label="暫停輪播" style="grid-row: 2; grid-column: 1; justify-self: end; align-self: center; margin-right: 15px; z-index: 30; background: #888; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-weight: bold; letter-spacing: 1px;">|| 暫停</button>
 
     <!-- TAB 2: Prev Arrow -->
-    <button id="cr-prev-center-1" aria-label="上一張圖片" style="grid-row: 1; grid-column: 1; justify-self: start; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 1.125em; border-radius: 0 4px 4px 0;">&#10094;</button>
+    <button id="cr-prev-center-0" aria-label="上一張圖片" style="grid-row: 1; grid-column: 1; justify-self: start; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 1.125em; border-radius: 0 4px 4px 0;">&#10094;</button>
 
     <!-- TAB 3: Next Arrow -->
-    <button id="cr-next-center-1" aria-label="下一張圖片" style="grid-row: 1; grid-column: 1; justify-self: end; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 1.125em; border-radius: 4px 0 0 4px;">&#10095;</button>
+    <button id="cr-next-center-0" aria-label="下一張圖片" style="grid-row: 1; grid-column: 1; justify-self: end; align-self: center; z-index: 30; background: rgba(0,0,0,0.4); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 1.125em; border-radius: 4px 0 0 4px;">&#10095;</button>
 
     <!-- TAB 4: Dots -->
-    <div id="cr-dots-center-1" style="grid-row: 2; grid-column: 1; justify-self: center; align-self: center; z-index: 30; display: flex; gap: 8px; padding: 10px 0;">
+    <div id="cr-dots-center-0" style="grid-row: 2; grid-column: 1; justify-self: center; align-self: center; z-index: 30; display: flex; gap: 8px; padding: 10px 0;">
         <button class="cr-dot" data-idx="0" aria-label="跳至第 1 張" style="width: 12px; height: 12px; border-radius: 50%; background: #408080; border: 2px solid #408080; cursor: pointer; padding: 0;"></button>
         <button class="cr-dot" data-idx="1" aria-label="跳至第 2 張" style="width: 12px; height: 12px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; padding: 0;"></button>
         <button class="cr-dot" data-idx="2" aria-label="跳至第 3 張" style="width: 12px; height: 12px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; padding: 0;"></button>
@@ -418,27 +459,27 @@
     <div style="grid-row: 2; grid-column: 1; z-index: 10; background: #e9e9e9; border-top: 1px solid #ccc; width: 100%; height: 100%; pointer-events: none;"></div>
     
     <!-- TAB 5+: Images (Rendered in top row) -->
-    <div id="cr-inner-center-1" style="grid-row: 1; grid-column: 1; display: grid; width: 100%; overflow: hidden; background: transparent; border-radius: 8px; z-index: 15;">
+    <div id="cr-inner-center-0" style="grid-row: 1; grid-column: 1; display: grid; width: 100%; overflow: hidden; background: transparent; border-radius: 8px; z-index: 15;">
 
-        <div class="cr-slide" id="cr-slide-center-1-0" role="group" aria-roledescription="slide" aria-label="第 1 張，共 4 張" aria-hidden="false" tabindex="0" style="grid-area: 1 / 1; align-self: center; opacity: 1; z-index: 10; transition: opacity 0.6s ease-in-out; outline: none;">
+        <div class="cr-slide" id="cr-slide-center-0-0" role="group" aria-roledescription="slide" aria-label="第 1 張，共 4 張" aria-hidden="false" tabindex="0" style="grid-area: 1 / 1; align-self: center; opacity: 1; z-index: 10; transition: opacity 0.6s ease-in-out; outline: none;">
             <img src="./images/01.有人文的校風.png" alt="有人文的校風" title="有人文的校風" style="width: 100%; height: auto; display: block;">
         </div>
-        <div class="cr-slide" id="cr-slide-center-1-1" role="group" aria-roledescription="slide" aria-label="第 2 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
+        <div class="cr-slide" id="cr-slide-center-0-1" role="group" aria-roledescription="slide" aria-label="第 2 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
             <img src="./images/02.有優質的教育.png" alt="有優質的教育" title="有優質的教育" style="width: 100%; height: auto; display: block;">
         </div>
-        <div class="cr-slide" id="cr-slide-center-1-2" role="group" aria-roledescription="slide" aria-label="第 3 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
+        <div class="cr-slide" id="cr-slide-center-0-2" role="group" aria-roledescription="slide" aria-label="第 3 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
             <img src="./images/03.有活力的校園.png" alt="有活力的校園" title="有活力的校園" style="width: 100%; height: auto; display: block;">
         </div>
-        <div class="cr-slide" id="cr-slide-center-1-3" role="group" aria-roledescription="slide" aria-label="第 4 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
+        <div class="cr-slide" id="cr-slide-center-0-3" role="group" aria-roledescription="slide" aria-label="第 4 張，共 4 張" aria-hidden="true" tabindex="-1" style="grid-area: 1 / 1; align-self: center; opacity: 0; z-index: 1; transition: opacity 0.6s ease-in-out; outline: none;">
             <img src="./images/04.有健康的學生.png" alt="有健康的學生" title="有健康的學生" style="width: 100%; height: auto; display: block;">
         </div>
     </div>
     
-    <div aria-live="polite" aria-atomic="true" class="sr-only" id="cr-liveregion-center-1" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">顯示第 1 張</div>
+    <div aria-live="polite" aria-atomic="true" class="sr-only" id="cr-liveregion-center-0" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">顯示第 1 張</div>
 
 <script>
 (function(){
-    var wrapper = document.getElementById("blk-center-1");
+    var wrapper = document.getElementById("blk-center-0");
     if(!wrapper) return;
     
     var slides = wrapper.querySelectorAll('.cr-slide');
@@ -450,10 +491,10 @@
     var timer = null;
     var isPlaying = true;
     
-    var btnPrev = document.getElementById("cr-prev-center-1");
-    var btnNext = document.getElementById("cr-next-center-1");
-    var btnPlay = document.getElementById("cr-play-center-1");
-    var liveRegion = document.getElementById("cr-liveregion-center-1");
+    var btnPrev = document.getElementById("cr-prev-center-0");
+    var btnNext = document.getElementById("cr-next-center-0");
+    var btnPlay = document.getElementById("cr-play-center-0");
+    var liveRegion = document.getElementById("cr-liveregion-center-0");
     
     function showSlide(index) {
         slides[currentIdx].style.opacity = 0;
@@ -509,7 +550,7 @@
         });
     });
     
-    var inner = document.getElementById("cr-inner-center-1");
+    var inner = document.getElementById("cr-inner-center-0");
     wrapper.addEventListener('mouseover', function() { if(isPlaying) { clearInterval(timer); timer=null; } });
     wrapper.addEventListener('mouseout', function() { if(isPlaying) { startPlay(); } });
     wrapper.addEventListener('focusin', function() { if(isPlaying) { clearInterval(timer); timer=null; } });
@@ -520,11 +561,11 @@
 </script>
 </div>
 </div>
-<div class="block-card" id="blk-center-2">
+<div class="block-card" id="blk-center-1">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">公告</h2>
 <iframe src="https://esa.ntpc.edu.tw/web-announce/rest/service/view/public/ZmZrdi9CZkpGTkZMZ25VRFhIaVozUGZVMkhmempGRDRjR01hZ3dBRk5nST0" title="公告" width="100%" height="1200" style="border:none;" loading="lazy"></iframe>
 </div>
-<div class="block-card" id="blk-center-3">
+<div class="block-card" id="blk-center-2">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">榮譽榜</h2>
 <iframe src="https://esa.ntpc.edu.tw/web-heromgt/rest/service/view/public/bE5CSC9OdmxtT3lRL2FrYSszdkwzbTBBVUozV2xiTEVFeGRwL3kzRS9Dcz0" title="榮譽榜" width="100%" height="700" style="border:none;" loading="lazy"></iframe>
 </div>
@@ -636,26 +677,6 @@
 </ul>
 </div>
 <div class="block-card" id="blk-right-2">
-<h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">新北校園通</h2>
-<ul class="link-list-container">
-<li class="link-list-entry">
-<a href="https://play.google.com/store/apps/details?id=tw.com.ischool.ntpc&hl=zh_TW&gl=US&pli=1" target="_blank" data-title="新北校園通 Google Play 下載" aria-label="新北校園通 Google Play 下載" class="img-link">
-<img src="./images/Google_Play_Store.png" alt="">
-<div class="img-caption">新北校園通 Google Play 下載</div>
-</a>
-</li>
-<li class="link-list-entry">
-<a href="https://www.google.com/url?q=https%3A%2F%2Fapps.apple.com%2Ftw%2Fapp%2F%25E6%2596%25B0%25E5%258C%2597%25E6%25A0%25A1%25E5%259C%2592%25E9%2580%259A%2Fid1065747651&sa=D&sntz=1&usg=AOvVaw0dVGOxHRU9dR62Fi_GJG87" target="_blank" data-title="新北校園通 App Store 下載" aria-label="新北校園通 App Store 下載" class="img-link">
-<img src="./images/appstore.png" alt="">
-<div class="img-caption">新北校園通 App Store 下載</div>
-</a>
-</li>
-<li class="link-list-entry">
-<a href="https://mis.ntpc.edu.tw/p/406-1001-5733,r2.php?Lang=zh-tw" target="_blank" data-title="APP操作說明與影片" aria-label="APP操作說明與影片" class="link-list-item single-link">APP操作說明與影片</a>
-</li>
-</ul>
-</div>
-<div class="block-card" id="blk-right-3">
 <h2 class="block-title" style="color: #FFFFFF; background-color: #408080; padding: 10px 15px; border-radius: 5px; text-align: center;" tabindex="-1">專線電話</h2>
 <div class="html-content">
 ☎ 教育部反霸凌專線<br><b><span style="color: #D32F2F;">1953</span></b><br>☎ 新北市維護學生受教權檢舉專線<br><b><span style="color: #D32F2F;">(02)2966-7317<br>0800-580-780</span></b><br>☎ 三多國小校園霸凌投訴&學生申訴專線<br><b><span style="color: #D32F2F;">(02)26880698#131</span></b><br>☎ 三多國小校園輔導專線<br><b><span style="color: #D32F2F;">(02)26880698#151</span></b>
@@ -663,6 +684,9 @@
 </div>
 
 </aside>
+</div>
+<div class="container-bottom"><a href="#ab" id="ab" accesskey="B" title="下方連結區" class="access-key">:::</a>
+
 </div>
 <footer class="footer">
     <div class="footer-container">
